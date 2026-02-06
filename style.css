@@ -1204,4 +1204,55 @@ h1 { font-size: 30px; margin:0; color: #921f1f; }
 
     object-fit: cover;
 
+}/* --- MOBILE & TABLET OPTIMIZATION --- */
+@media (max-width: 768px) {
+    /* Make the window fit the screen width */
+    .letter-window {
+        width: 95vw;
+        padding-top: 140px; /* Reduced top padding for smaller screens */
+        aspect-ratio: auto;
+        height: auto;
+        min-height: 400px;
+    }
+
+    /* Shrink the title so it doesn't wrap weirdly */
+    h1 {
+        font-size: 22px !important;
+    }
+
+    /* Shrink the cat/images so they don't push buttons off-screen */
+    .cat {
+        width: 160px;
+    }
+
+    /* Stack the Yes/No buttons or make them smaller */
+    .buttons {
+        gap: 15px;
+    }
+    .btn {
+        width: 90px;
+    }
+
+    /* Fix the Gift Grid and Album Gallery for mobile */
+    .gift-grid, .photo-gallery {
+        flex-wrap: wrap; /* Allows pillars/photos to drop to the next line */
+        height: auto;
+        gap: 20px;
+        padding-bottom: 20px;
+    }
+
+    .mystery-box img, .flip-card {
+        flex: 0 1 40%; /* Shows 2 items per row instead of 4 */
+        height: 200px;
+    }
+
+    /* Adjust the notebook paper for the message */
+    #message-container .letter-window {
+        padding: 40px 30px;
+        background-size: cover;
+    }
+    
+    .message-text {
+        font-size: 16px;
+    }
 }
