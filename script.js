@@ -155,7 +155,7 @@ noBtn.addEventListener("click", (e) => {
 /* ========================================= */
 
 yesBtn.addEventListener("click", () => {
-    title.textContent = "Yippeeee!";
+    title.textContent = "Yippieee!";
     catImg.src = "cat_dance.gif";
 
     letterWindow.classList.add("final");
