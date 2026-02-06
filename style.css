@@ -1242,14 +1242,30 @@ h1 { font-size: 30px; margin:0; color: #921f1f; }
         max-width: 90%;
     }
 
-    /* 5. Fix the Polaroid Gallery */
+   /* --- POLAROID SCROLL FIX --- */
+@media (max-width: 768px) {
+    #album-container .letter-window {
+        height: 80vh !important;    /* Limits height so it stays on screen */
+        overflow-y: auto !important; /* Forces a scrollbar INSIDE the window */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Starts photos at the top */
+        padding-top: 60px !important; 
+    }
+
     .photo-gallery {
-        flex-direction: column; /* Stack photos vertically */
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        gap: 30px;
+        gap: 40px; 
+        width: 100%;
+        padding-bottom: 40px; /* Space before the button */
+        flex-shrink: 0;       /* Prevents photos from squishing */
     }
+
     .flip-card {
-        flex: 0 0 250px; /* Give them a fixed height while stacked */
-        width: 200px;
+        flex: 0 0 230px; /* Keeps each polaroid at its correct height */
+        width: 180px;
     }
+}
 }
