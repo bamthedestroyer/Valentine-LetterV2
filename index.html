@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine Letter</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="music-howl's castle.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🔇</span>
+    </div>
+
+
+    <!-- ENVELOPE -->
+    <div id="envelope-container">
+        <img src="envelope.png" alt="Envelope" id="envelope" />
+        <p>♡ Letter for You ♡</p>
+    </div>
+
+
+    <!-- VALENTINE QUESTION -->
+    <div id="letter-container">
+        <div class="letter-window">
+
+            <h1 id="letter-title">Metha will you be my Valentine?</h1>
+
+            <img src="cat_heart.gif" class="cat" id="letter-cat" />
+
+            <div class="buttons" id="letter-buttons">
+                <img src="yes.png" class="btn yes-btn" alt="Yes" />
+
+                <div class="no-wrapper">
+                    <img src="no.png" class="btn no-btn" alt="No" />
+                </div>
+            </div>
+
+            <div id="final-text" class="final-text" style="display: none">
+                <p style="font-size: 20px; margin-bottom: 10px;">
+                    YAAYAYAY now read this...
+                </p>
+                <button id="read-letter-btn">Read my Letter 💌</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- LETTER MESSAGE -->
+    <div id="message-container">
+        <div class="letter-window">
+
+            <button class="back-arrow" id="back-to-letter">←</button>
+
+            <h1 style="font-size: 24px;">My Dearest Metha,</h1>
+
+            <p class="message-text">
+                Hi my baby! I wanted to make this website for you on valentines!
+                Even though I'm broke right now and can't buy you the world yet,
+                I can still code you a little piece of it.
+
+                I'm looking forward to spending Valentine's day with you.
+                Whether near or far, having you as my Valentine is the greatest
+                gift you could ever give me.
+
+                <br><br>
+
+                You make me so happy every single day, you're amazing and I'm
+                so very very proud of you always! I wish us more to come.
+            </p>
+
+            <button id="open-gifts-btn">Open Gifts ♡</button>
+
+        </div>
+    </div>
+
+
+    <!-- GIFTS -->
+    <div id="gift-container">
+        <div class="letter-window" id="gift-window">
+
+            <button class="back-arrow" id="back-to-message">←</button>
+
+            <h1 style="font-size: 40px; margin-bottom: 0;">Pick a Gift!</h1>
+            <p style="font-size: 25px; margin-top: 5px; color: #ffffff;">
+                (Open them all to continue!)
+            </p>
+
+            <div class="gift-grid">
+
+                <div class="mystery-box" onclick="openSpecificGift(0, this)">
+                    <img src="mystery-cover.png" alt="Gift 1">
+                    <span>1</span>
+                </div>
+
+                <div class="mystery-box" onclick="openSpecificGift(1, this)">
+                    <img src="mystery-cover.png" alt="Gift 2">
+                    <span>2</span>
+                </div>
+
+                <div class="mystery-box" onclick="openSpecificGift(2, this)">
+                    <img src="mystery-cover.png" alt="Gift 3">
+                    <span>3</span>
+                </div>
+
+                <div class="mystery-box" onclick="openSpecificGift(3, this)">
+                    <img src="mystery-cover.png" alt="Gift 4">
+                    <span>4</span>
+                </div>
+
+            </div>
+
+            <button id="memories-btn" style="margin-top: 20px; display: none;">
+                Click to see the prettiest girl! 📸
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- GIFT REVEAL -->
+    <div id="gift-reveal-container">
+        <div class="letter-window">
+
+            <h1 id="reveal-title">Here is your gift!</h1>
+
+            <img id="reveal-img"
+                 src=""
+                 alt="Gift"
+                 style="width: 150px; margin: 10px 0;">
+
+            <p id="reveal-text" class="final-text">
+                Message goes here...
+            </p>
+
+            <button id="back-btn">Another</button>
+
+        </div>
+    </div>
+
+
+    <!-- PHOTO ALBUM -->
+    <div id="album-container">
+        <div class="letter-window">
+
+            <button class="back-arrow" id="back-to-gifts">←</button>
+
+            <h1>♡ The Prettiest Girl Podium ♡</h1>
+
+            <div class="gallery-wrapper">
+
+                <button class="scroll-btn" onclick="scrollGallery('left')">❮</button>
+
+                <div class="photo-gallery">
+
+                    <!-- PHOTO 1 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"></div>
+                            <div class="flip-card-back">
+                                <img src="photo1.png" alt="Photo 1">
+                                <span class="photo-caption">The</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHOTO 2 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"></div>
+                            <div class="flip-card-back">
+                                <img src="photo2.png" alt="Photo 2">
+                                <span class="photo-caption">Prettiest</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHOTO 3 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"></div>
+                            <div class="flip-card-back">
+                                <img src="photo3.png" alt="Photo 3">
+                                <span class="photo-caption">Girl</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHOTO 4 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"></div>
+                            <div class="flip-card-back">
+                                <img src="photo4.png" alt="Photo 4">
+                                <span class="photo-caption">I Love You</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHOTO 5 -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front"></div>
+                            <div class="flip-card-back">
+                                <img src="photo5.png" alt="Photo 5">
+                                <span class="photo-caption">XOXO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="scroll-btn" onclick="scrollGallery('right')">❯</button>
+
+            </div>
+
+            <button id="music-btn">One last thing baby</button>
+
+        </div>
+    </div>
+
+
+    <!-- QR CODE -->
+    <div id="qr-container">
+        <div class="letter-window">
+
+            <button class="back-arrow" id="back-to-album">←</button>
+
+            <h1>Our Songs 🎶</h1>
+
+            <img src="song-qr.png"
+                 alt="Song QR Code"
+                 style="width: 200px; border-radius: 10px; border: 4px solid #ffffff;">
+
+            <p style="font-size: 18px; margin-top: 15px;">
+                Scan this to listen!
+            </p>
+
+            <p style="font-size: 14px; color: #000000;">
+                (Songs we sing together even tho you tell me to stfu all the time)
+            </p>
+
+            <button id="restart-btn"
+                    style="margin-top: 20px; background-color: #ff9999;">
+                Start Over ↻
+            </button>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

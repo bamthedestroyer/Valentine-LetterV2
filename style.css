@@ -1,0 +1,1207 @@
+body {
+
+    margin: 0;
+
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background-image: url("heart-bg.jpg");
+
+    font-family: "Pixelify Sans", sans-serif;
+
+    overflow: hidden;
+
+}
+
+
+
+/* --- FLOATING MUSIC BUTTON --- */
+
+.music-control {
+
+    position: fixed;
+
+    top: 20px;
+
+    right: 20px;
+
+    z-index: 1000; /* stays on top of everything */
+
+    background: white;
+
+    padding: 10px;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    font-size: 24px;
+
+    border: 2px solid #ff4d4d;
+
+    transition: transform 0.2s ease;
+
+}
+
+.music-control:active {
+
+    transform: scale(0.9);
+
+}
+
+
+
+/* --- ENVELOPE STYLES --- */
+
+#envelope-container {
+
+    text-align: center;
+
+    cursor: pointer;
+
+}
+
+
+
+#envelope-container p {
+
+    font-size: 28px;       /* Bigger text */
+
+    font-weight: bold;    
+
+    color: #ff4d4d;        
+
+    margin-top: 15px;      
+
+    text-shadow: 2px 2px 0px white;
+
+}
+
+
+
+@keyframes pulse {
+
+    0% { transform:scale(1); }
+
+    50% { transform: scale(1.1); }
+
+    100% { transform: scale(1); }
+
+}
+
+
+
+#envelope {
+
+    width: 200px;
+
+    animation: pulse 1.5s infinite;
+
+    cursor: pointer;
+
+}
+
+
+
+/* CONTAINERS */
+
+#letter-container,
+
+#message-container,
+
+#gift-container,
+
+#gift-reveal-container,
+
+#qr-container,
+
+#album-container {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: rgba(0,0,0,0.4);
+
+}
+
+
+
+.letter-window {
+
+    width: 90vw;
+
+    max-width: 800px;
+
+    aspect-ratio: 3/2;
+
+    padding: 20px 20px 0 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background-image: url("window.png");
+
+    background-size: contain;
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+
+    border-radius: 12px;
+
+    gap: 1px;
+
+    padding-top: 180px;
+
+    transform: scale(1.2);
+
+    opacity: 0;
+
+    transition: transform 0.6s ease, opacity 0.6s ease;
+
+}
+
+
+
+.letter-window.open { transform: scale(1); opacity: 1; }
+
+
+
+/* TEXT STYLES */
+
+.message-text {
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    text-align: center;
+
+    max-width: 80%;
+
+    margin-bottom: 20px;
+
+    color: #222;
+
+}
+
+
+
+/* BUTTONS */
+
+#read-letter-btn,
+
+#open-gifts-btn,
+
+#continue-btn {
+
+    padding: 10px 20px;
+
+    font-family: inherit;
+
+    font-size: 18px;
+
+    background: #921f1f;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    box-shadow: 2px 2px 0px #5e0d0d;
+
+    transition: transform 0.2s;
+
+}
+
+#read-letter-btn:hover, #open-gifts-btn:hover {
+
+    transform: scale(1.05);
+
+    background: #b32626;
+
+}
+
+
+
+/* HEADERS */
+
+h1 { font-size: 30px; margin:0; color: #921f1f; }
+
+
+
+.cat { width: 250px; margin: 10px 0; transition: width 0.4s ease; }
+
+.letter-window.final .cat { width: 180px; }
+
+.buttons { display: flex; justify-content: center; gap: 30px; position: relative; }
+
+.no-wrapper{ position:relative; }
+
+.btn { width: 120px; cursor: pointer; user-select: none; }
+
+.yes-btn, .no-btn { width: 120px; height: auto; display: inline-block; }
+
+.yes-btn { position: relative; z-index: 2; transition: transform 0.3s ease; }
+
+.no-btn { z-index: 1; position: relative; transition: transform 0.15s ease; cursor: default; }
+
+
+
+.final-text {
+
+    font-size: 22px;
+
+    line-height: 1.4;
+
+    text-align: center;
+
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    background-color: rgba(255,240,240,0.8);
+
+    border-radius: 12px;
+
+    margin-top: 10px;
+
+    color: #921f1f;
+
+}
+
+
+
+/* GIFT SHOP STYLES */
+
+#gift-window {
+
+    padding-top: 20px !important;
+
+    padding-bottom: 20px;
+
+    background-image: none !important;
+
+    background-color: rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+
+    aspect-ratio: auto;
+
+    height: auto;
+
+    width: 95vw;
+
+}
+
+
+
+/* MYSTERY BOX CONTAINER (Generic) */
+
+.mystery-box, .mystery-container {
+
+    animation: none !important; /* Forces them to stop moving */
+
+    transform: none !important; /* Stops any sliding/bouncing */
+
+    transition: transform 0.2s ease; /* Only move when hovered */
+
+}
+
+
+
+/* Only move slightly when you hover over them */
+
+.mystery-box:hover, .mystery-container:hover {
+
+    transform: scale(1.05) !important;
+
+}
+
+
+
+/* Ensure the images inside don't animate either */
+
+.mystery-box img, .mystery-container img {
+
+    animation: none !important;
+
+}
+
+.mystery-container:hover { transform: scale(1.1) rotate(2deg); }
+
+.mystery-container img { width: 220px; height: auto; filter: drop-shadow(0 10px 15px rgba(146, 31, 31, 0.4)); }
+
+.mystery-container span { margin-top: 15px; font-size: 20px; font-weight: bold; color: #921f1f; text-transform: uppercase; }
+
+
+
+/* MUSIC & MEMORY BUTTONS */
+
+#music-btn, #memories-btn,#restart-btn {
+
+    margin-top: 5px !important; /* Reduced from 20px to move it up */
+
+    background-color: #ff9999;
+
+    padding: 10px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-family: 'Pixelify Sans', sans-serif;
+
+}
+
+
+
+#music-btn:hover, #memories-btn:hover, #restart-btn:hover {
+
+    background: #b32626;
+
+    transform: scale(1.05);
+
+}
+
+
+
+@keyframes bounce {
+
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+
+    40% {transform: translateY(-10px);}
+
+    60% {transform: translateY(-5px);}
+
+}
+
+
+
+#qr-container .letter-window { padding-top: 160px; }
+
+
+
+/* REVEAL PAGE */
+
+#gift-reveal-container .letter-window {
+
+    background-image: none !important;
+
+    background-color: rgba(255, 255, 255, 0.9);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+    border: 4px solid #921f1f;
+
+    border-radius: 20px;
+
+    padding-top: 30px !important;
+
+    padding-bottom: 40px !important;
+
+    aspect-ratio: auto;
+
+    height: auto;
+
+    width: 90%;
+
+    max-width: 400px;
+
+}
+
+#gift-reveal-container h1 {
+
+    color: #921f1f;
+
+    text-shadow: none;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+/* YIPPEE SCREEN */
+
+.letter-window.final {
+
+    background-image: none !important;
+
+    background-color: rgba(255, 255, 255, 0.9);
+
+    border: 4px solid #921f1f;
+
+    border-radius: 20px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+    padding-top: 30px !important;
+
+    padding-bottom: 30px;
+
+    width: 90%;
+
+    max-width: 400px;
+
+    height: auto;
+
+    aspect-ratio: auto;
+
+}
+
+.letter-window.final h1 {
+
+    color: #921f1f;
+
+    text-shadow: none;
+
+}
+
+
+
+/* NOTEBOOK STYLE */
+
+#message-container .letter-window {
+
+    background-image: url("paper.png") !important;
+
+    background-size: 100% 100%;
+
+    background-color: transparent;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+
+    border: none;
+
+    border-radius: 0;
+
+    width: 95vw;
+
+    max-width: 900px;
+
+    aspect-ratio: 1244 / 700;
+
+    height: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 60px 80px;
+
+}
+
+#message-container .message-text {
+
+    max-width: 80%;
+
+    color: #222;
+
+    font-weight: 600;
+
+    text-shadow: none;
+
+    font-size: 18px;
+
+}
+
+#message-container h1 {
+
+    color: #921f1f;
+
+    text-shadow: none;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+/* BACK BUTTON & UNIVERSAL BACK ARROW */
+
+#back-btn {
+
+    margin-top: 20px;
+
+    padding: 10px 24px;
+
+    background: #921f1f;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 25px;
+
+    font-family: inherit;
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(146, 31, 31, 0.3);
+
+    transition: transform 0.2s ease;
+
+}
+
+#back-btn:hover { background: #b32626; transform: scale(1.05); }
+
+
+
+.back-arrow {
+
+    position: absolute;
+
+    top: 15px;
+
+    left: 15px;
+
+    background: none;
+
+    border: none;
+
+    font-size: 24px;
+
+    color: #ff4d4d;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    z-index: 100;
+
+    transition: transform 0.2s ease;
+
+    padding: 0;
+
+    line-height: 1;
+
+}
+
+
+
+.back-arrow:hover {
+
+    transform: scale(1.2);
+
+    color: #cc0000;
+
+}
+
+
+
+/* ========================================= */
+
+/* PHOTO ALBUM - NO ARROWS / PILLAR VIEW     */
+
+/* ========================================= */
+
+
+
+#album-container .letter-window {
+
+    background-image: none !important;
+
+    background-color: rgba(255, 255, 255, 0.2);
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+
+    border: none;
+
+    border-radius: 20px;
+
+    padding: 20px 20px 30px 20px !important;
+
+    width: 95vw;            
+
+    max-width: 1200px;      
+
+    height: auto;          
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    overflow: hidden !important;
+
+}
+
+
+
+/* KILLS THE LEFT AND RIGHT ARROWS */
+
+.scroll-btn {
+
+    display: none !important;
+
+}
+
+
+
+/* Centers the gallery area where the arrows used to be */
+
+.gallery-wrapper {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: visible !important;
+
+    padding: 20px 0;
+
+}
+
+
+
+.photo-gallery {
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 40px; /* Nice wide spacing between pillars */
+
+    width: 100%;
+
+    overflow: visible !important;
+
+}
+
+
+
+/* THE POLAROID CARD */
+
+.flip-card {
+
+    flex: 0 1 180px;
+
+    height: 230px;
+
+    perspective: 1000px;
+
+    cursor: pointer;
+
+    animation: slideUpFade 1s ease-out;
+
+}
+
+
+
+.flip-card-inner {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    transition: transform 0.6s;
+
+    transform-style: preserve-3d;
+
+}
+
+
+
+.flip-card.flipped .flip-card-inner {
+
+    transform: rotateY(180deg);
+
+}
+
+
+
+.flip-card-front, .flip-card-back {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    border-radius: 2px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+
+}
+
+
+
+/* FRONT: Thick White Border */
+
+.flip-card-front {
+
+    background-color: #ffb7b2;
+
+    border: 12px solid #ffffff !important;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 1.5rem;
+
+    color: white;
+
+}
+
+
+
+/* BACK: The Signature "Polaroid" Frame */
+
+.flip-card-back {
+
+    background-color: #ffffff;
+
+    transform: rotateY(180deg);
+
+    padding: 10px 10px 45px 10px !important;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+
+.flip-card-back img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+
+/* BACK: Caption styling */
+
+.flip-card-back::after {
+
+    /* DELETE the content line that was here! */
+
+    position: absolute;
+
+    bottom: 12px;
+
+    left: 0;
+
+    right: 0;
+
+    font-size: 0.8rem;
+
+    color: #333;
+
+    font-family: 'Pixelify Sans', sans-serif;
+
+    text-align: center;
+
+}
+
+
+
+/* ADD THIS so the text you type in HTML actually shows up */
+
+.photo-caption {
+
+    position: absolute;
+
+    bottom: 12px;
+
+    left: 0;
+
+    right: 0;
+
+    font-size: 0.8rem;
+
+    color: #333;
+
+    font-family: 'Pixelify Sans', sans-serif;
+
+    text-align: center;
+
+}
+
+
+
+
+
+/* Hover Effect */
+
+.flip-card:hover {
+
+    transform: translateY(-8px);
+
+    transition: transform 0.3s ease;
+
+}
+
+
+
+/* Last Surprise Button */
+
+#music-btn {
+
+    margin: 50px 0 0 0 !important;
+
+}
+
+/* ========================================= */
+
+/* PILLAR STYLE (IMAGES ONLY - NO BOXES)     */
+
+/* ========================================= */
+
+
+
+.gift-grid {
+
+    display: flex;             /* Flexbox */
+
+    flex-direction: row;       /* Side-by-side (Horizontal) */
+
+    justify-content: center;   /* Center them */
+
+    gap: 10px;                 /* Space between pillars */
+
+    margin-top: 15px;
+
+    width: 100%;
+
+    height: 300px;             /* Fixed Height */
+
+}
+
+
+
+.mystery-box {
+
+    flex: 1;                   /* Equal width pillars */
+
+    display: flex;
+
+    flex-direction: column;    
+
+    align-items: center;       /* Center horizontally */
+
+    justify-content: center;   /* Center vertically */
+
+   
+
+    /* NO BOX STYLING */
+
+    background: transparent;
+
+    border: none;
+
+    box-shadow: none;
+
+    cursor: pointer;
+
+   
+
+    /* Animation */
+
+    animation: slideUpFade 1s ease-out;
+
+    transition: transform 0.3s ease;
+
+}
+
+
+
+.mystery-box:hover {
+
+    /* Scale the image up slightly when hovering */
+
+    transform: translateY(-10px) scale(1.1);
+
+    background: transparent;
+
+    box-shadow: none;
+
+}
+
+
+
+.mystery-box img {
+
+    width: 100%;              
+
+    /* INCREASED SIZE HERE: */
+
+    max-width: 160px;          /* Was 120px, now 160px */
+
+    height: auto;
+
+    margin: 0 !important;      
+
+   
+
+    /* Strong drop shadow so they don't blend into the background */
+
+    filter: drop-shadow(0 6px 10px rgba(146, 31, 31, 0.4));
+
+}
+
+
+
+.mystery-box span {
+
+    display: none;             /* HIDE THE NUMBERS */
+
+}
+
+
+
+/* 1. Define the sliding animation */
+
+@keyframes slideUpFade {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translateY(30px); /* Start a bit lower */
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: translateY(0);    /* End in normal position */
+
+    }
+
+}
+
+
+
+/* 2. Apply it to ALL images inside the pop-up windows */
+
+.letter-window img {
+
+    animation: slideUpFade 1s ease-out; /* Takes 1 second, moves smooth */
+
+}
+
+
+
+/* 3. Add a tiny delay for buttons so they appear AFTER the cat */
+
+.buttons img {
+
+    animation: slideUpFade 1.2s ease-out; /* Slower/Later than the cat */
+
+    animation-fill-mode: backwards; /* Stays hidden until animation starts */
+
+}
+
+
+
+/* 4. Make the Mystery Gift float a bit too */
+
+.mystery-container img {
+
+    animation: slideUpFade 1s ease-out;
+
+}/* --- FLIP CARD CONTAINER --- */
+
+.photo-gallery {
+
+    display: flex;
+
+    gap: 20px;
+
+    overflow-x: auto; /* Allows scrolling if you have many */
+
+    padding: 20px;
+
+    perspective: 1000px; /* Essential for 3D effect */
+
+}
+
+
+
+/* The Card Itself */
+
+.flip-card {
+
+    background-color: transparent;
+
+    width: 200px;  /* Width of your photos */
+
+    height: 280px; /* Height of your photos */
+
+    cursor: pointer;
+
+}
+
+
+
+/* The Inner Container (What actually spins) */
+
+.flip-card-inner {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    text-align: center;
+
+    transition: transform 0.6s;
+
+    transform-style: preserve-3d;
+
+}
+
+
+
+/* The Flip Action (Triggered by JS click) */
+
+.flip-card.flipped .flip-card-inner {
+
+    transform: rotateY(180deg);
+
+}
+
+
+
+/* Front and Back styling */
+
+.flip-card-front, .flip-card-back {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    -webkit-backface-visibility: hidden;
+
+    backface-visibility: hidden;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+
+
+
+/* --- THE FRONT (What she sees first) --- */
+
+.flip-card-front {
+
+    background-color: #B57EDC; /* Cute pink color */
+
+    color: rgb(255, 255, 255);
+
+    font-family: 'Courier New', cursive;
+
+    font-weight: bold;
+
+    font-size: 1.2rem;
+
+    border: 4px solid rgb(114, 8, 8);
+
+}
+
+
+
+/* Optional: Add a cute pattern or icon to the front */
+
+.flip-card-front::after {
+
+    content: "Click to Flip ♡ ";
+
+}
+
+
+
+/* --- THE BACK (The Photo) --- */
+
+.flip-card-back {
+
+    background-color: #B57EDC;
+
+    transform: rotateY(180deg);
+
+    border: 4px solid #B57EDC;
+
+}
+
+
+
+.flip-card-back img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
