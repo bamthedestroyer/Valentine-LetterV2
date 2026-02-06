@@ -1204,55 +1204,52 @@ h1 { font-size: 30px; margin:0; color: #921f1f; }
 
     object-fit: cover;
 
-}/* --- MOBILE & TABLET OPTIMIZATION --- */
+}/* --- THE ULTIMATE IPHONE & IPAD FIX --- */
 @media (max-width: 768px) {
-    /* Make the window fit the screen width */
+    /* 1. Fix the Window background */
     .letter-window {
-        width: 95vw;
-        padding-top: 140px; /* Reduced top padding for smaller screens */
-        aspect-ratio: auto;
+        width: 92vw;
+        background-size: 100% 100%; /* Forces the image to stretch to the content */
+        padding-top: 120px !important; /* Moves content down so it's not on the "top frame" */
+        padding-bottom: 40px !important;
+        height: auto !important;
+        aspect-ratio: auto !important;
+        gap: 10px;
+    }
+
+    /* 2. Make the Cat and Title fit */
+    h1 { font-size: 1.4rem !important; }
+    .cat { width: 140px !important; }
+
+    /* 3. Stack the Gift Pillars (Crucial!) */
+    .gift-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2x2 grid instead of 4 wide */
         height: auto;
-        min-height: 400px;
-    }
-
-    /* Shrink the title so it doesn't wrap weirdly */
-    h1 {
-        font-size: 22px !important;
-    }
-
-    /* Shrink the cat/images so they don't push buttons off-screen */
-    .cat {
-        width: 160px;
-    }
-
-    /* Stack the Yes/No buttons or make them smaller */
-    .buttons {
         gap: 15px;
     }
-    .btn {
-        width: 90px;
+    .mystery-box img {
+        max-width: 100px; /* Smaller images for the grid */
     }
 
-    /* Fix the Gift Grid and Album Gallery for mobile */
-    .gift-grid, .photo-gallery {
-        flex-wrap: wrap; /* Allows pillars/photos to drop to the next line */
-        height: auto;
-        gap: 20px;
-        padding-bottom: 20px;
-    }
-
-    .mystery-box img, .flip-card {
-        flex: 0 1 40%; /* Shows 2 items per row instead of 4 */
-        height: 200px;
-    }
-
-    /* Adjust the notebook paper for the message */
+    /* 4. Fix the Message Paper */
     #message-container .letter-window {
-        padding: 40px 30px;
-        background-size: cover;
+        padding: 50px 30px !important;
+        background-size: cover !important;
     }
-    
     .message-text {
-        font-size: 16px;
+        font-size: 15px !important;
+        max-width: 90%;
+    }
+
+    /* 5. Fix the Polaroid Gallery */
+    .photo-gallery {
+        flex-direction: column; /* Stack photos vertically */
+        align-items: center;
+        gap: 30px;
+    }
+    .flip-card {
+        flex: 0 0 250px; /* Give them a fixed height while stacked */
+        width: 200px;
     }
 }
